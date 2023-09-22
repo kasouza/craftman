@@ -2,6 +2,8 @@
 
 namespace Craftsman;
 
+use mysqli;
+
 function join_paths()
 {
     $paths = array();

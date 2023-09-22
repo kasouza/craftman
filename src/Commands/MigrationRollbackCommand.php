@@ -4,6 +4,10 @@ namespace Craftsman\Commands;
 
 use Craftsman\Facades\MigrationFacade;
 
+use function Craftsman\getDbConnection;
+use function Craftsman\join_paths;
+use function Craftsman\read_dir_custom;
+
 class MigrationRollbackCommand extends Command
 {
     public function __construct()

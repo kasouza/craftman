@@ -2,6 +2,8 @@
 
 namespace Craftsman\BusinessLogic;
 
+use function Craftsman\readEnvFile;
+
 class Options
 {
     private function __construct(private string $commandString, private array $options)

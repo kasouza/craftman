@@ -2,6 +2,8 @@
 
 namespace Craftsman\Commands;
 
+use function Craftsman\getDbConnection;
+
 class MigrationSetupCommand extends Command
 {
     public function __construct()

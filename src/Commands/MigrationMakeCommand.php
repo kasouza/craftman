@@ -4,6 +4,8 @@ namespace Craftsman\Commands;
 
 use Craftsman\BusinessLogic\App;
 
+use function Craftsman\join_paths;
+
 class MigrationMakeCommand extends Command
 {
     public function __construct()
