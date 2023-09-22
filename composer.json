@@ -1,6 +1,7 @@
 {
     "name": "kasouza/craftsman",
     "description": "A set of utilities to manage your project, aka poor man's artisan",
+    "license": "MIT",
     "require": {
         "php": "^8.0"
     },
