@@ -14,6 +14,13 @@ class StorageLinkCommand extends Command
         $target = CONF_STORAGE_LINK_TARGET;
         $storageLink = CONF_STORAGE_LINK;
 
+        if (!file_exists($target)) {
+            if (mkdir($target) === false) {
+                printf("Could not create \"{$target}\"\n");
+                return false;
+            }
+        }
+
         if (!empty($options['target'])) {
             $target = $options['target'];
         }
