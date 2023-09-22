@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 
 /**
@@ -16,7 +17,7 @@
  * @version   CVS: 1.0.0
  */
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
 use App\BusinessLogic\App;
 use App\Commands\HelpCommand;
