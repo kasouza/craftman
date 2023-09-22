@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Commands;
+namespace Craftsman\Commands;
 
 class MigrationSetupCommand extends Command
 {

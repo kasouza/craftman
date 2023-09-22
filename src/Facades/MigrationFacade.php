@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Facades;
+namespace Craftsman\Facades;
 
 use mysqli;
 use stdClass;

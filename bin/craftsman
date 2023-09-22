@@ -19,13 +19,13 @@
 
 require_once $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
-use App\BusinessLogic\App;
-use App\Commands\HelpCommand;
-use App\Commands\MigrationMakeCommand;
-use App\Commands\MigrationMigrateCommand;
-use App\Commands\MigrationRollbackCommand;
-use App\Commands\MigrationSetupCommand;
-use App\Commands\StorageLinkCommand;
+use Craftsman\BusinessLogic\App;
+use Craftsman\Commands\HelpCommand;
+use Craftsman\Commands\MigrationMakeCommand;
+use Craftsman\Commands\MigrationMigrateCommand;
+use Craftsman\Commands\MigrationRollbackCommand;
+use Craftsman\Commands\MigrationSetupCommand;
+use Craftsman\Commands\StorageLinkCommand;
 
 App::getInstance()
     ->withCommands(

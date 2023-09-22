@@ -1,5 +1,7 @@
 <?php
 
+namespace Craftsman;
+
 function join_paths()
 {
     $paths = array();

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Commands;
+namespace Craftsman\Commands;
 
 use Error;
 

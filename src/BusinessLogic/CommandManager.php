@@ -1,8 +1,8 @@
 <?php
 
-namespace App\BusinessLogic;
+namespace Craftsman\BusinessLogic;
 
-use App\Commands\Command;
+use Craftsman\Commands\Command;
 use Error;
 
 class CommandManager

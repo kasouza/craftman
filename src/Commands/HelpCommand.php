@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Commands;
+namespace Craftsman\Commands;
 
-use App\BusinessLogic\App;
+use Craftsman\BusinessLogic\App;
 
 class HelpCommand extends Command
 {

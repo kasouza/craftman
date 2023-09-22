@@ -1,6 +1,6 @@
 <?php
 
-namespace App\BusinessLogic;
+namespace Craftsman\BusinessLogic;
 
 class App
 {

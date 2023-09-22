@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Commands;
+namespace Craftsman\Commands;
 
-use MigrationFacade;
+use Craftsman\Facades\MigrationFacade;
 
 class MigrationMigrateCommand extends Command
 {

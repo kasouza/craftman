@@ -11,11 +11,11 @@
 
     "autoload": {
         "psr-4": {
-            "App\\": "src/app/"
+            "Craftsman\\": "src/"
         }, 
         "files": [
-            "src/app/config.php",
-            "src/app/helpers.php"
+            "src/config.php",
+            "src/helpers.php"
         ]
     },
     "bin": [ "bin/craftsman" ],
