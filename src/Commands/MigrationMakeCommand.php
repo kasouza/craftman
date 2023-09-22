@@ -15,11 +15,11 @@ class MigrationMakeCommand extends Command
 
     public function exec(array $options): bool
     {
-        $migrationsDir = __DIR__ . DIRECTORY_SEPARATOR .'migrations';
+        $migrationsDir = getcwd() . DIRECTORY_SEPARATOR .'migrations';
         if (!empty($options['dir'])) {
             $migrationsDir = $options['dir'];
             if (!str_starts_with(DIRECTORY_SEPARATOR, '/')) {
-                $migrationsDir = __DIR__ . DIRECTORY_SEPARATOR . $migrationsDir;
+                $migrationsDir = getcwd() . DIRECTORY_SEPARATOR . $migrationsDir;
             }
         }
 

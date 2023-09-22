@@ -14,13 +14,13 @@ define('CONF_ENV_VAR_NAME_DB_PORT', 'DB_PORT');
 define('CONF_ENV_VAR_NAME_STORAGE_LINK_TARGET', 'STORAGE_LINK_TARGET');
 define('CONF_ENV_VAR_NAME_STORAGE_LINK', 'STORAGE_LINK');
 
-define('CONF_STORAGE_LINK_TARGET', __DIR__ . config(CONF_ENV_VAR_NAME_STORAGE_LINK, true, '/storage'));
-define('CONF_STORAGE_LINK', __DIR__ . config(CONF_ENV_VAR_NAME_STORAGE_LINK, true, '/public/storage'));
+define('CONF_STORAGE_LINK_TARGET', getcwd() . config(CONF_ENV_VAR_NAME_STORAGE_LINK, true, '/storage'));
+define('CONF_STORAGE_LINK', getcwd() . config(CONF_ENV_VAR_NAME_STORAGE_LINK, true, '/public/storage'));
 
 
 function readEnvFile()
 {
-    $envFile = __DIR__ . '/.env';
+    $envFile = getcwd() . '/.env';
 
     if (!file_exists($envFile)) {
         printf(".env file not found\n");
