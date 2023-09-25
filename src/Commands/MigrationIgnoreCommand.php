@@ -5,14 +5,13 @@ namespace Craftsman\Commands;
 use Craftsman\Facades\MigrationFacade;
 
 use function Craftsman\getDbConnection;
-use function Craftsman\join_paths;
 use function Craftsman\read_dir_custom;
 
-class MigrationMigrateCommand extends Command
+class MigrationIgnoreCommand extends Command
 {
     public function __construct()
     {
-        parent::__construct('migrate');
+        parent::__construct('ignore');
     }
 
     public function exec(array $options): bool
@@ -33,38 +32,25 @@ class MigrationMigrateCommand extends Command
         }
 
         $ranMigrations = MigrationFacade::getMigrations($mysqli, $migrationsTableName);
-
         $newMigrations = [];
+
         $dirs = read_dir_custom($migrationsDir);
 
         foreach($dirs as $dir) {
-            $filename = join_paths($migrationsDir, $dir, 'up.sql');
-            $query = file_get_contents($filename);
-
             $migrationName = MigrationFacade::getMigrationName($dir);
             if (!empty($ranMigrations[$migrationName])) {
                 continue;
             }
 
-            if (!$query) {
-                printf("File not found \"%s\"\n", $filename);
-                return false;
-            }
-
-            $result = $mysqli->query($query);
-            if ($result === false) {
-                return false;
-            }
-
             $newMigrations[] = $migrationName;
-            printf("Migrated - %s\n", $migrationName);
+            printf("Ignored - %s\n", $migrationName);
         }
 
         if (!empty($newMigrations)) {
             MigrationFacade::insertMigrations($mysqli, $migrationsTableName, $newMigrations, $ranMigrations);
-            printf("Migrated sucessfully\n");
+            printf("Ignored migrations sucessfully\n");
         } else {
-            printf("Nothing to migrate\n");
+            printf("Nothing to ignore\n");
         }
 
         return true;

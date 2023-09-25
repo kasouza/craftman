@@ -13,10 +13,11 @@ define('CONF_ENV_VAR_NAME_DB_NAME', 'DB_NAME');
 define('CONF_ENV_VAR_NAME_DB_PORT', 'DB_PORT');
 define('CONF_ENV_VAR_NAME_STORAGE_LINK_TARGET', 'STORAGE_LINK_TARGET');
 define('CONF_ENV_VAR_NAME_STORAGE_LINK', 'STORAGE_LINK');
+define('CONF_ENV_VAR_NAME_MIGRATIONS_TABLE', 'MIGRATIONS_TABLE');
 
 define('CONF_STORAGE_LINK_TARGET', getcwd() . config(CONF_ENV_VAR_NAME_STORAGE_LINK, true, '/storage'));
 define('CONF_STORAGE_LINK', getcwd() . config(CONF_ENV_VAR_NAME_STORAGE_LINK, true, '/public/storage'));
-
+define('CONF_MIGRATIONS_TABLE', config(CONF_ENV_VAR_NAME_MIGRATIONS_TABLE, true, 'migrations'));
 
 function readEnvFile()
 {

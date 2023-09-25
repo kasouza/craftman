@@ -27,7 +27,10 @@ class MigrationRollbackCommand extends Command
 
         $mysqli = getDbConnection();
 
-        $migrationsTableName = 'migrations';
+        $migrationsTableName = CONF_MIGRATIONS_TABLE;
+        if (!empty($options['name'])) {
+            $migrationsTableName = trim($options['name']);
+        }
         $oldMigrations = MigrationFacade::getMigrations($mysqli, $migrationsTableName);
 
         $currentBatch = -1;

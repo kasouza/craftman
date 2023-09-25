@@ -14,7 +14,7 @@ class MigrationSetupCommand extends Command
     public function exec(array $options): bool
     {
         $mysqli = getDbConnection();
-        $migrationsTableName = 'migrations';
+        $migrationsTableName = CONF_MIGRATIONS_TABLE;
         if (!empty($options['name'])) {
             $migrationsTableName = trim($options['name']);
         }

@@ -21,6 +21,7 @@ require_once $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
 use Craftsman\BusinessLogic\App;
 use Craftsman\Commands\HelpCommand;
+use Craftsman\Commands\MigrationIgnoreCommand;
 use Craftsman\Commands\MigrationMakeCommand;
 use Craftsman\Commands\MigrationMigrateCommand;
 use Craftsman\Commands\MigrationRollbackCommand;
@@ -39,6 +40,7 @@ App::getInstance()
             new MigrationMigrateCommand(),
             new MigrationRollbackCommand(),
             new MigrationSetupCommand(),
+            new MigrationIgnoreCommand(),
         ]
     )
     ->withCommands(
