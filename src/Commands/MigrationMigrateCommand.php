@@ -3,6 +3,7 @@
 namespace Craftsman\Commands;
 
 use Craftsman\Facades\MigrationFacade;
+use mysqli_sql_exception;
 
 use function Craftsman\getDbConnection;
 use function Craftsman\join_paths;
@@ -51,8 +52,13 @@ class MigrationMigrateCommand extends Command
                 return false;
             }
 
-            $result = $mysqli->query($query);
-            if ($result === false) {
+            try {
+                $result = $mysqli->query($query);
+                if ($result === false) {
+                    return false;
+                }
+            } catch (mysqli_sql_exception $e) {
+                printf("ERROR: %s\n", $e->getMessage());
                 return false;
             }
 

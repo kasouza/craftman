@@ -19,6 +19,7 @@ class App
 
     public function __construct()
     {
+        mysqli_report(MYSQLI_REPORT_ALL);
         $this->commandManager = new CommandManager();
     }
 
