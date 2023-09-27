@@ -38,6 +38,8 @@ class MigrationMigrateCommand extends Command
         $newMigrations = [];
         $dirs = read_dir_custom($migrationsDir);
 
+        $ok = true;
+
         foreach($dirs as $dir) {
             $filename = join_paths($migrationsDir, $dir, 'up.sql');
             $query = file_get_contents($filename);
@@ -49,17 +51,20 @@ class MigrationMigrateCommand extends Command
 
             if (!$query) {
                 printf("File not found \"%s\"\n", $filename);
-                return false;
+                $ok = false;
+                break;
             }
 
             try {
                 $result = $mysqli->query($query);
                 if ($result === false) {
-                    return false;
+                    $ok = false;
+                    break;
                 }
             } catch (mysqli_sql_exception $e) {
                 printf("ERROR: %s\n", $e->getMessage());
-                return false;
+                $ok = false;
+                break;
             }
 
             $newMigrations[] = $migrationName;
@@ -68,11 +73,15 @@ class MigrationMigrateCommand extends Command
 
         if (!empty($newMigrations)) {
             MigrationFacade::insertMigrations($mysqli, $migrationsTableName, $newMigrations, $ranMigrations);
-            printf("Migrated sucessfully\n");
+            if ($ok) {
+                printf("Migrated sucessfully\n");
+            } else {
+                printf("Errors occured, but some migrations succeeded\n");
+            }
         } else {
             printf("Nothing to migrate\n");
         }
 
-        return true;
+        return $ok;
     }
 }
