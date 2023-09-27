@@ -62,7 +62,7 @@ class MigrationRollbackCommand extends Command
                 return false;
             }
 
-            $result = $mysqli->query($query);
+            $result = $mysqli->multi_query($query);
             if ($result === false) {
                 printf("Could not execte down.sql\n");
                 return false;

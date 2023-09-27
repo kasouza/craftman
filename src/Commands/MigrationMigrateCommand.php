@@ -56,7 +56,7 @@ class MigrationMigrateCommand extends Command
             }
 
             try {
-                $result = $mysqli->query($query);
+                $result = $mysqli->multi_query($query);
                 if ($result === false) {
                     $ok = false;
                     break;
