@@ -67,6 +67,7 @@ class MigrationRollbackCommand extends Command
 
             try {
                 $result = $mysqli->multi_query($query);
+                $mysqli->store_result();
                 if ($result === false) {
                     $ok = false;
                     break;
