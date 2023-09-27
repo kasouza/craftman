@@ -79,7 +79,11 @@ class MigrationMigrateCommand extends Command
                 printf("Errors occured, but some migrations succeeded\n");
             }
         } else {
-            printf("Nothing to migrate\n");
+            if ($ok) {
+                printf("Nothing to migrate\n");
+            } else {
+                printf("Could not migrate\n");
+            }
         }
 
         return $ok;

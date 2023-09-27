@@ -3,6 +3,7 @@
 namespace Craftsman\Commands;
 
 use Craftsman\Facades\MigrationFacade;
+use mysqli_sql_exception;
 
 use function Craftsman\getDbConnection;
 use function Craftsman\join_paths;
@@ -43,6 +44,8 @@ class MigrationRollbackCommand extends Command
         $dirs = read_dir_custom($migrationsDir, true);
         $removedMigrations = [];
 
+        $ok = true;
+
         foreach($dirs as $dir) {
             $filename = join_paths($migrationsDir, $dir, 'down.sql');
             $query = file_get_contents($filename);
@@ -62,10 +65,16 @@ class MigrationRollbackCommand extends Command
                 return false;
             }
 
-            $result = $mysqli->multi_query($query);
-            if ($result === false) {
-                printf("Could not execte down.sql\n");
-                return false;
+            try {
+                $result = $mysqli->multi_query($query);
+                if ($result === false) {
+                    $ok = false;
+                    break;
+                }
+            } catch (mysqli_sql_exception $e) {
+                printf("ERROR: %s\n", $e->getMessage());
+                $ok = false;
+                break;
             }
 
             printf("Rolled back - %s\n", $migrationName);
@@ -79,9 +88,19 @@ class MigrationRollbackCommand extends Command
                 return false;
             }
 
+            if ($ok) {
+                printf("Rolled back sucessfully\n");
+            } else {
+                printf("Errors occured, but some migrations succeeded\n");
+            }
+
             printf("Rolled back sucessfully\n");
         } else {
-            printf("Nothing to migrate\n");
+            if ($ok) {
+                printf("Nothing to rollback\n");
+            } else {
+                printf("Could not rollback\n");
+            }
         }
 
         return true;
